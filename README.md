@@ -88,9 +88,13 @@ kubectl label namespace krateo-system azure-secrets=enabled
 
 To start the exporter/scraper for all costs, install this chart in the Krateo install namespace and configure all required parameters:
 ```sh
-helm install krateo-template-finops-azure-configuration krateo/krateo-template-finops-azure-configuration -n krateo-system \
+helm install <name> azure-configuration-finops \
+  --repo https://marketplace.krateo.io \
+  --namespace <krateo-namespace> \
+  --version 1.0.0 \
   --set tenantId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --set clientId=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
   --set clientSecret=xxxxxxxxxx \
-  --set exporterConfig.additionalVariables.account_name=xxxxxxx
+  --set exporterConfig.additionalVariables.account_name=xxxxxxx \
+  --wait
 ```
