@@ -1,0 +1,24 @@
+apiVersion: finops.krateo.io/v1
+kind: ExporterScraperConfig
+metadata:
+  name: finops-azure-configuration
+spec:
+  exporterConfig:
+    api: 
+      path: /<container>/<directory>/<file_name>
+      verb: GET
+      headers:
+      - "x-ms-version: 2017-11-09"
+      endpointRef:
+        name: azure-storage-account
+        namespace: {{ .Release.Namespace }}
+    metricType: cost
+    pollingInterval: "1h"
+    additionalVariables:
+    {{- toYaml $.Values.exporterConfig.additionalVariables | nindent 6 }}
+  scraperConfig:
+    pollingInterval: {{ .Values.scraperConfig.pollingInterval }}
+    tableName: {{ .Values.scraperConfig.tableName }}
+    scraperDatabaseConfigRef: 
+      name: {{ .Values.scraperConfig.scraperDatabaseConfigRef.name }}
+      namespace: {{ .Values.scraperConfig.scraperDatabaseConfigRef.namespace }}

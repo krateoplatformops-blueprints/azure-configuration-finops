@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "clientId": {
+      "default": "",
+      "description": "You Azure Client ID",
+      "title": "clientId",
+      "type": "string"
+    },
+    "clientSecret": {
+      "default": "",
+      "description": "You Azure Secret ID",
+      "title": "clientSecret",
+      "type": "string"
+    },
+    "exporterConfig": {
+      "additionalProperties": false,
+      "description": "ExporterScraperConfig details for the cost exports, depends on the Azure Configuration",
+      "properties": {
+        "additionalVariables": {
+          "additionalProperties": false,
+          "properties": {
+            "account_name": {
+              "default": "",
+              "title": "account_name",
+              "type": "null"
+            },
+            "container": {
+              "default": "focus",
+              "description": "These values could be different depending on how you setup your FOCUS export and logic app",
+              "title": "container",
+              "type": "string"
+            },
+            "directory": {
+              "default": "exports",
+              "title": "directory",
+              "type": "string"
+            },
+            "file_name": {
+              "default": "static-export.csv",
+              "title": "file_name",
+              "type": "string"
+            }
+          },
+          "required": [
+            "account_name",
+            "container",
+            "directory",
+            "file_name"
+          ],
+          "title": "additionalVariables",
+          "type": "object"
+        },
+        "api": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "default": "/\u003ccontainer\u003e/\u003cdirectory\u003e/\u003cfile_name\u003e",
+              "description": "Path to the FOCUS cost report in the Azure Storage",
+              "title": "path",
+              "type": "string"
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "title": "api",
+          "type": "object"
+        }
+      },
+      "required": [
+        "api",
+        "additionalVariables"
+      ],
+      "title": "exporterConfig",
+      "type": "object"
+    },
+    "scraperConfig": {
+      "additionalProperties": false,
+      "description": "ScraperConfig details for the cost exports, target table in the database",
+      "properties": {
+        "pollingInterval": {
+          "default": "1h",
+          "description": "Polling Interval for the scraper",
+          "title": "pollingInterval",
+          "type": "string"
+        },
+        "scraperDatabaseConfigRef": {
+          "additionalProperties": false,
+          "description": "Reference to the database configuration for the FinOps database",
+          "properties": {
+            "name": {
+              "default": "finops-database-handler",
+              "title": "name",
+              "type": "string"
+            },
+            "namespace": {
+              "default": "krateo-system",
+              "title": "namespace",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "namespace"
+          ],
+          "title": "scraperDatabaseConfigRef",
+          "type": "object"
+        },
+        "tableName": {
+          "default": "finops",
+          "description": "Database table name for the cost data in FOCUS",
+          "title": "tableName",
+          "type": "string"
+        }
+      },
+      "required": [
+        "pollingInterval",
+        "tableName",
+        "scraperDatabaseConfigRef"
+      ],
+      "title": "scraperConfig",
+      "type": "object"
+    },
+    "tenantId": {
+      "default": "",
+      "description": "You Azure Tenant ID",
+      "title": "tenantId",
+      "type": "string"
+    }
+  },
+  "required": [
+    "tenantId",
+    "clientId",
+    "clientSecret",
+    "exporterConfig",
+    "scraperConfig"
+  ],
+  "type": "object"
+}

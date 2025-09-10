@@ -1,0 +1,86 @@
+# @schema
+# type: string
+# required: true
+# description: You Azure Tenant ID
+# @schema
+tenantId: # your tenant id
+# @schema
+# type: string
+# required: true
+# description: You Azure Client ID
+# @schema
+clientId: # your client id
+# @schema
+# type: string
+# required: true
+# description: You Azure Secret ID
+# @schema
+clientSecret: # your secret id
+
+# @schema
+# type: object
+# required: true
+# description: ExporterScraperConfig details for the cost exports, depends on the Azure Configuration
+# @schema
+exporterConfig:
+  # @schema
+  # type: object
+  # required: true
+  # @schema
+  api:
+    # @schema
+    # type: string
+    # required: true
+    # description: Path to the FOCUS cost report in the Azure Storage
+    # default: /<container>/<directory>/<file_name>
+    # @schema
+    path: /<container>/<directory>/<file_name>
+  # @schema
+  # type: object
+  # required: true
+  # @schema
+  additionalVariables:
+    account_name: # your storage account
+    # These values could be different depending on how you setup your FOCUS export and logic app
+    container: focus
+    directory: exports
+    file_name: static-export.csv
+
+# @schema
+# type: object
+# required: true
+# description: ScraperConfig details for the cost exports, target table in the database
+# @schema
+scraperConfig:
+  # @schema
+  # type: string
+  # required: true
+  # description: Polling Interval for the scraper
+  # default: 1h
+  # @schema
+  pollingInterval: "1h"
+  # @schema
+  # type: string
+  # required: true
+  # description: Database table name for the cost data in FOCUS 
+  # default: finops
+  # @schema
+  tableName: finops
+  # @schema
+  # type: object
+  # required: true
+  # description: Reference to the database configuration for the FinOps database
+  # @schema
+  scraperDatabaseConfigRef:
+    # @schema
+    # type: string
+    # required: true
+    # default: finops-database-handler
+    # @schema
+    name: finops-database-handler
+    # @schema
+    # type: string
+    # required: true
+    # default: krateo-system
+    # @schema
+    namespace: krateo-system
