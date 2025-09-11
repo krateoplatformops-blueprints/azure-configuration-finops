@@ -19,36 +19,9 @@
       "description": "ExporterScraperConfig details for the cost exports, depends on the Azure Configuration",
       "properties": {
         "additionalVariables": {
-          "additionalProperties": false,
+          "additionalProperties": true,
           "properties": {
-            "account_name": {
-              "default": "",
-              "title": "account_name",
-              "type": "null"
-            },
-            "container": {
-              "default": "focus",
-              "description": "These values could be different depending on how you setup your FOCUS export and logic app",
-              "title": "container",
-              "type": "string"
-            },
-            "directory": {
-              "default": "exports",
-              "title": "directory",
-              "type": "string"
-            },
-            "file_name": {
-              "default": "static-export.csv",
-              "title": "file_name",
-              "type": "string"
-            }
           },
-          "required": [
-            "account_name",
-            "container",
-            "directory",
-            "file_name"
-          ],
           "title": "additionalVariables",
           "type": "object"
         },
