@@ -3,19 +3,19 @@
 # required: true
 # description: You Azure Tenant ID
 # @schema
-tenantId: # your tenant id
+tenantId: "" # your tenant id
 # @schema
 # type: string
 # required: true
 # description: You Azure Client ID
 # @schema
-clientId: # your client id
+clientId: "" # your client id
 # @schema
 # type: string
 # required: true
 # description: You Azure Secret ID
 # @schema
-clientSecret: # your secret id
+clientSecret: "" # your secret id
 
 # @schema
 # type: object
