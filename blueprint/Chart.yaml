@@ -22,6 +22,6 @@ keywords:
   - portal
   - finops
 sources:
-  - https://github.com/krateoplatformops-blueprints/finops-azure-configuration
+  - https://github.com/krateoplatformops-blueprints/azure-configuration-finops
 annotations:
   krateoSupportedVersion: ">= 2.5.1"
